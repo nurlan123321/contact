@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="detail" *ngIf="listing">
+	<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
+					<div class="delete-edit pull-right">
+						<i class="fa fa-trash-o delete-icon" aria-hidden="true" tooltip="Delete" (click)="smModal.show()"></i>
+						
+						<a [routerLink]="['/edit-listing/' + listing.$key]"><i class="fa fa-pencil-square-o edit-icon" aria-hidden="true" tooltip="Edit"></i></a>
+					</div>
+				<div class="clearfix"></div>
+					<tabset [justified]="true">
+						<tab heading="Contacts">
+							<ul class="list-group">
+								<li class="list-group-item">{{listing.name}}</li>
+								<li class="list-group-item">{{listing.email}}</li>
+								<li class="list-group-item">{{listing.phone}}</li>
+								<li class="list-group-item">{{listing.city}}</li>
+							
+							</ul>
+						</tab>
+						<tab heading="Detail Text">
+							<div class="thumbnail text-detail">
+								<p>{{listing.body}}</p>
+							</div>
+						</tab>
+					</tabset>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title pull-left">Delete?</h4>
+					<button type="button" class="close pull-right" aria-label="Close" (click)="smModal.hide()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button class="btn btn-danger" (click)="onDelete()">Delete</button>
+					<button class="btn btn-success" (click)="smModal.hide()">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<app-footer></app-footer>

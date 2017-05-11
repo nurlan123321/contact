@@ -1,0 +1,23 @@
+<div class="container">
+	<app-navbar></app-navbar>
+	<div class="clearfix"></div>
+	<div class="inner">
+		<!-- Boxes -->
+		<div class="thumbnails">
+			
+				
+			<div class="box" *ngFor="let listing of listings | paginate: { itemsPerPage: 6, currentPage: p }">
+				
+				<div class="inner">
+					<h3>{{listing.name}}</h3>
+					<p>{{listing.body | truncate : 50}}</p>
+					<a [routerLink]="['/detail/' + listing.$key]" class="button fit">Read More</a>
+				</div> 
+				
+			</div>
+		
+		</div>
+		<pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+	</div>
+</div>
+<app-footer></app-footer>
